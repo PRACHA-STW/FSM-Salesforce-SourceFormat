@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>srikanth.palla@severntrent.co.uk</contactEmail>
+    <description>Created as part of SFI-466</description>
+    <label>FSM Azure Data Lake</label>
+    <oauthConfig>
+        <callbackUrl>http://localhost:1717/OauthRedirect</callbackUrl>
+        <consumerKey>3MVG9LlLrkcRhGHbRvCw7fHR0B7jvhaV83u3QaEsac1EvaiRxsTM_jpqZbxlpBoL1i9zAJtsaEPpAJ.vkaJ.p</consumerKey>
+        <isAdminApproved>true</isAdminApproved>
+        <isClientCredentialEnabled>true</isClientCredentialEnabled>
+        <isCodeCredentialEnabled>false</isCodeCredentialEnabled>
+        <isCodeCredentialPostOnly>false</isCodeCredentialPostOnly>
+        <isConsumerSecretOptional>false</isConsumerSecretOptional>
+        <isIntrospectAllTokens>false</isIntrospectAllTokens>
+        <isNamedUserJwtEnabled>false</isNamedUserJwtEnabled>
+        <isPkceRequired>false</isPkceRequired>
+        <isRefreshTokenRotationEnabled>false</isRefreshTokenRotationEnabled>
+        <isSecretRequiredForRefreshToken>true</isSecretRequiredForRefreshToken>
+        <isSecretRequiredForTokenExchange>false</isSecretRequiredForTokenExchange>
+        <isTokenExchangeEnabled>false</isTokenExchangeEnabled>
+        <oauthClientCredentialUser>azuredatalakeadmin@severntrent.co.uk</oauthClientCredentialUser>
+        <scopes>Api</scopes>
+        <scopes>Full</scopes>
+        <scopes>RefreshToken</scopes>
+    </oauthConfig>
+    <oauthPolicy>
+        <ipRelaxation>ENFORCE</ipRelaxation>
+        <isTokenExchangeFlowEnabled>false</isTokenExchangeFlowEnabled>
+        <refreshTokenPolicy>infinite</refreshTokenPolicy>
+    </oauthPolicy>
+    <permissionSetName>FSM System Admin Permissions</permissionSetName>
+    <profileName>Salesforce API Only System Integrations</profileName>
+    <profileName>System Administrator</profileName>
+    <profileName>FSM Integration</profileName>
+</ConnectedApp>
