@@ -26,6 +26,11 @@
                 <default>false</default>
                 <label>Contractor-IWJS</label>
             </value>
+            <value>
+                <fullName>4</fullName>
+                <default>false</default>
+                <label>DLO-WNRT</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
