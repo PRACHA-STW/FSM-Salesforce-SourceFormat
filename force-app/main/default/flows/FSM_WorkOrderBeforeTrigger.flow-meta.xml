@@ -7,7 +7,7 @@
         <name>Assign_Default_Service_Report_Template</name>
         <label>Assign Default Service Report Template</label>
         <locationX>479</locationX>
-        <locationY>1403</locationY>
+        <locationY>1703</locationY>
         <assignmentItems>
             <assignToReference>$Record.ServiceReportTemplateId</assignToReference>
             <operator>Assign</operator>
@@ -24,7 +24,7 @@
         <name>Assign_Record_Type</name>
         <label>Assign Record Type</label>
         <locationX>578</locationX>
-        <locationY>2627</locationY>
+        <locationY>2927</locationY>
         <assignmentItems>
             <assignToReference>$Record.RecordTypeId</assignToReference>
             <operator>Assign</operator>
@@ -38,7 +38,7 @@
         <name>Assign_Technical_specification</name>
         <label>Assign Technical specification</label>
         <locationX>545</locationX>
-        <locationY>611</locationY>
+        <locationY>911</locationY>
         <assignmentItems>
             <assignToReference>$Record.FSM_TechnicalSpecification__c</assignToReference>
             <operator>Assign</operator>
@@ -54,7 +54,7 @@
         <name>Assign_TMA_Permit</name>
         <label>Assign TMA Permit</label>
         <locationX>479</locationX>
-        <locationY>995</locationY>
+        <locationY>1295</locationY>
         <assignmentItems>
             <assignToReference>$Record.FSM_TMAPermit__c</assignToReference>
             <operator>Assign</operator>
@@ -71,7 +71,7 @@
         <name>FSM_UpdateFieldToThrowValidation</name>
         <label>Update Field To Throw Validation</label>
         <locationX>842</locationX>
-        <locationY>2519</locationY>
+        <locationY>2819</locationY>
         <assignmentItems>
             <assignToReference>$Record.FSM_RestrictStatusUpdate__c</assignToReference>
             <operator>Assign</operator>
@@ -85,7 +85,7 @@
         <name>Make_Record_Type_Virtual</name>
         <label>Make Record Type Virtual</label>
         <locationX>50</locationX>
-        <locationY>2519</locationY>
+        <locationY>2819</locationY>
         <assignmentItems>
             <assignToReference>$Record.RecordTypeId</assignToReference>
             <operator>Assign</operator>
@@ -99,17 +99,30 @@
         <name>Null_Record_Type</name>
         <label>Null Record Type</label>
         <locationX>314</locationX>
-        <locationY>2627</locationY>
+        <locationY>2927</locationY>
         <assignmentItems>
             <assignToReference>$Record.RecordTypeId</assignToReference>
             <operator>Assign</operator>
         </assignmentItems>
     </assignments>
     <assignments>
+        <name>Set_CrewSize_value_to_Null</name>
+        <label>Set CrewSize value to Null</label>
+        <locationX>479</locationX>
+        <locationY>395</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.MinimumCrewSize</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <connector>
+            <targetReference>check_new_WO_record</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Virtualcheck</name>
         <label>Virtual check</label>
         <locationX>325</locationX>
-        <locationY>1919</locationY>
+        <locationY>2219</locationY>
         <assignmentItems>
             <assignToReference>$Record.FSM_Virtual__c</assignToReference>
             <operator>Assign</operator>
@@ -126,7 +139,7 @@
         <name>Show_Error_Message</name>
         <label>Show Error Message</label>
         <locationX>281</locationX>
-        <locationY>503</locationY>
+        <locationY>803</locationY>
         <customErrorMessages>
             <errorMessage>You are not allowed to create a Work Order</errorMessage>
             <isFieldError>false</isFieldError>
@@ -137,7 +150,7 @@
         <name>Check_If_Case_IsChanged</name>
         <label>Check If Case IsChanged</label>
         <locationX>611</locationX>
-        <locationY>887</locationY>
+        <locationY>1187</locationY>
         <defaultConnector>
             <targetReference>Check_If_Service_territory_IsChanged</targetReference>
         </defaultConnector>
@@ -173,11 +186,36 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Check_if_minimum_crew_size_is_1</name>
+        <label>Check if minimum crew size is 1</label>
+        <locationX>611</locationX>
+        <locationY>287</locationY>
+        <defaultConnector>
+            <targetReference>check_new_WO_record</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.MinimumCrewSize</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <numberValue>1.0</numberValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_CrewSize_value_to_Null</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
         <description>Updated as part of SFS-1138</description>
         <name>Check_If_New_Record_or_BU_changed</name>
         <label>Check If New Record or BU changed</label>
         <locationX>611</locationX>
-        <locationY>2195</locationY>
+        <locationY>2495</locationY>
         <defaultConnector>
             <targetReference>FSM_Get_WorkStep_Records</targetReference>
         </defaultConnector>
@@ -217,7 +255,7 @@
         <name>Check_If_Service_territory_IsChanged</name>
         <label>Check If Service territory IsChanged</label>
         <locationX>611</locationX>
-        <locationY>1187</locationY>
+        <locationY>1487</locationY>
         <defaultConnector>
             <targetReference>WO_Virtual_Check</targetReference>
         </defaultConnector>
@@ -257,7 +295,7 @@
         <name>check_new_WO_record</name>
         <label>check new WO record</label>
         <locationX>611</locationX>
-        <locationY>287</locationY>
+        <locationY>587</locationY>
         <defaultConnector>
             <targetReference>Check_If_Case_IsChanged</targetReference>
         </defaultConnector>
@@ -283,7 +321,7 @@
         <name>Check_User_Permission</name>
         <label>Check User Permission</label>
         <locationX>413</locationX>
-        <locationY>395</locationY>
+        <locationY>695</locationY>
         <defaultConnector>
             <targetReference>Fetch_Technical_Specification_record</targetReference>
         </defaultConnector>
@@ -309,7 +347,7 @@
         <name>FSM_CheckWorkStepsAndWorkOrderStatus</name>
         <label>Check WorkSteps and WorkOrder Status</label>
         <locationX>974</locationX>
-        <locationY>2411</locationY>
+        <locationY>2711</locationY>
         <defaultConnectorLabel>WorkStep is Null</defaultConnectorLabel>
         <rules>
             <name>FSM_WorkStepNotNull</name>
@@ -346,7 +384,7 @@
         <name>Is_BU_blank</name>
         <label>Is BU blank?</label>
         <locationX>446</locationX>
-        <locationY>2519</locationY>
+        <locationY>2819</locationY>
         <defaultConnector>
             <targetReference>Assign_Record_Type</targetReference>
         </defaultConnector>
@@ -371,7 +409,7 @@
         <name>ST_check</name>
         <label>ST check</label>
         <locationX>457</locationX>
-        <locationY>1811</locationY>
+        <locationY>2111</locationY>
         <defaultConnector>
             <targetReference>Check_If_New_Record_or_BU_changed</targetReference>
         </defaultConnector>
@@ -397,7 +435,7 @@
         <name>WO_RecordType_Assignment</name>
         <label>WO RecordType Assignment</label>
         <locationX>248</locationX>
-        <locationY>2303</locationY>
+        <locationY>2603</locationY>
         <defaultConnector>
             <targetReference>Get_BU_RecordTypes</targetReference>
         </defaultConnector>
@@ -423,7 +461,7 @@
         <name>WO_Virtual_Check</name>
         <label>WO Virtual Check</label>
         <locationX>611</locationX>
-        <locationY>1595</locationY>
+        <locationY>1895</locationY>
         <defaultConnector>
             <targetReference>Check_If_New_Record_or_BU_changed</targetReference>
         </defaultConnector>
@@ -486,7 +524,7 @@ Updated as part of SFI-3014</description>
         <name>Fetch_Default_Service_Report_Template</name>
         <label>Fetch Default Service Report Template</label>
         <locationX>479</locationX>
-        <locationY>1295</locationY>
+        <locationY>1595</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Assign_Default_Service_Report_Template</targetReference>
@@ -509,7 +547,7 @@ Updated as part of SFI-3014</description>
         <name>Fetch_Technical_Specification_record</name>
         <label>Fetch Technical Specification record</label>
         <locationX>545</locationX>
-        <locationY>503</locationY>
+        <locationY>803</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Assign_Technical_specification</targetReference>
@@ -531,7 +569,7 @@ Updated as part of SFI-3014</description>
         <name>FSM_Get_WorkStep_Records</name>
         <label>Get WorkStep Records</label>
         <locationX>974</locationX>
-        <locationY>2303</locationY>
+        <locationY>2603</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>FSM_CheckWorkStepsAndWorkOrderStatus</targetReference>
@@ -567,7 +605,7 @@ Updated as part of SFI-3014</description>
         <name>Get_BU_RecordTypes</name>
         <label>Get BU RecordTypes</label>
         <locationX>446</locationX>
-        <locationY>2411</locationY>
+        <locationY>2711</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Is_BU_blank</targetReference>
@@ -595,7 +633,7 @@ Updated as part of SFI-3014</description>
         <name>get_Virtual_Territory</name>
         <label>get Virtual Territory</label>
         <locationX>457</locationX>
-        <locationY>1703</locationY>
+        <locationY>2003</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>ST_check</targetReference>
@@ -617,7 +655,7 @@ Updated as part of SFI-3014</description>
         <name>Virtual_RecordType</name>
         <label>Virtual RecordType</label>
         <locationX>50</locationX>
-        <locationY>2411</locationY>
+        <locationY>2711</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Make_Record_Type_Virtual</targetReference>
@@ -645,7 +683,7 @@ Updated as part of SFI-3014</description>
         <locationX>485</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>check_new_WO_record</targetReference>
+            <targetReference>Check_if_minimum_crew_size_is_1</targetReference>
         </connector>
         <object>WorkOrder</object>
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
