@@ -282,6 +282,13 @@
                 <elementReference>On_Hold_Comment</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SASingleRecordVar.FSM_OnHoldComments__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>On_Hold_Comment</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Is_SA_Virtual</targetReference>
         </connector>
@@ -5260,7 +5267,8 @@ Updated as part of SFL-635
 updated as a part of SFL-1094
 Updated as a part of SFL-1193
 updated for SFL-1094 added normal date time field for arrival end window for infra not formula one
-Anup - Updated for SFL-1094 - The additional detail for delay screen to appear even if the worker selects Yes.</description>
+Anup - Updated for SFL-1094 - The additional detail for delay screen to appear even if the worker selects Yes.
+Nehru - Updated for SFL-1079 , Assignment on hold comments latest.</description>
     <dynamicChoiceSets>
         <name>ActionCodes1</name>
         <dataType>String</dataType>
@@ -8675,7 +8683,7 @@ Updated as a part of SFL-1193</description>
             <targetReference>Mobile_Or_Desktop</targetReference>
         </connector>
     </start>
-    <status>Active</status>
+    <status>Draft</status>
     <subflows>
         <description>Calculate Time to Show</description>
         <name>Calculate_Time_to_Show</name>
