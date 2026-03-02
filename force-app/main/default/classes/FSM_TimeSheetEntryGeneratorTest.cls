@@ -14,6 +14,8 @@ public class FSM_TimeSheetEntryGeneratorTest {
     // Create test data for users, service resources, service territory, work order, service appointment, assigned resources, time sheet and time sheet entries
         FSL.GlobalAPIS.addStatusTransition('New', 'Scheduled');
         FSL.GlobalAPIS.addStatusTransition('Scheduled', 'Completed');
+        FSL.GlobalAPIS.addStatusTransition('Scheduled', 'Accepted');
+        FSL.GlobalAPIS.addStatusTransition('Accepted', 'Completed');
         String profileId = [SELECT Id FROM Profile where Name='Standard User' LIMIT 1].Id;
     //Lists to store the created records for Usersservice resources, assigned resources, service territory members and time sheet entries to be used in the test methods
     //Created as part of SFL-889                       
@@ -98,6 +100,29 @@ public class FSM_TimeSheetEntryGeneratorTest {
             // Asserting that the integration log is created and the number of records matches the expected count
             System.assertEquals(allLog != null, true, 'Integration Log Created');
             System.assertEquals(numberOfRecordsToCreate, allLog.size(), 'All Integration Log Created');
+        }
+    }
+    @isTest
+    static void testWorkMate(){
+        User fw = [Select id, FirstName, LastName, Username, FSM_ExternalId__c From User Where FSM_ExternalId__c = 'TestTSEuser346@gmail.com'];
+        List<ServiceAppointment> sa=[Select id,status From ServiceAppointment];
+        PermissionSet ps = [select Id from PermissionSet where Name='FSM_SiteWorkerPermissions'];
+        insert new PermissionSetAssignment(PermissionSetId = ps.Id, AssigneeId = fw.Id); //Insert the permission set assignment to the user
+        PermissionSet ps1 = [select Id from PermissionSet where Name='FSM_SystemAdminPermissions'];
+    	insert new PermissionSetAssignment(PermissionSetId = ps1.Id, AssigneeId = fw.Id);
+        System.runas(fw){
+            Test.startTest(); 
+            for(ServiceAppointment sap : sa){
+                //setting the status of service appointment to Completed
+                sap.status='Accepted';    
+            }      
+            update sa;
+            for(ServiceAppointment sap : sa){
+                //setting the status of service appointment to Completed
+                sap.status='Completed';    
+            }      
+            update sa; // Update the service appointments with the new status
+            Test.stopTest();
         }
     }
 }
