@@ -51,9 +51,7 @@ public with sharing class FSM_ServiceAppointmentTriggerHelper {
         //Update WO record
         if(!woList.isEmpty() && Schema.sObjectType.WorkOrder.isUpdateable()){
             try{
-                update woList;
-            }catch(exception e){
-                new FSM_Utility.ErrorLogCreator().setExternalID(String.valueof(allNewSa.KeySet())).setClassName('FSM_ServiceAppointmentTriggerHelper').setMethodName('casePopulationForParentBundle').setErrorMessage(e.getMessage()).setLineNumber(String.valueOf(e.getLineNumber())).setStackTrace(e.getStackTraceString()).setType('Field Service').create();
+                update woList;}catch(exception e){new FSM_Utility.ErrorLogCreator().setExternalID(String.valueof(allNewSa.KeySet())).setClassName('FSM_ServiceAppointmentTriggerHelper').setMethodName('casePopulationForParentBundle').setErrorMessage(e.getMessage()).setLineNumber(String.valueOf(e.getLineNumber())).setStackTrace(e.getStackTraceString()).setType('Field Service').create();
             }
         }
         
@@ -96,8 +94,7 @@ public with sharing class FSM_ServiceAppointmentTriggerHelper {
         if(woList.size()>0&&Schema.sObjectType.WorkOrder.isUpdateable()){
             try{
                 update woList;
-            }catch(exception e){
-                new FSM_Utility.ErrorLogCreator().setClassName('FSM_ServiceAppointmentTriggerHelper').setMethodName('workOrderReasonUpdates').setErrorMessage(e.getMessage()).setLineNumber(String.valueOf(e.getLineNumber())).setStackTrace(e.getStackTraceString()).setType('Field Service').create();
+            }catch(exception e){new FSM_Utility.ErrorLogCreator().setClassName('FSM_ServiceAppointmentTriggerHelper').setMethodName('workOrderReasonUpdates').setErrorMessage(e.getMessage()).setLineNumber(String.valueOf(e.getLineNumber())).setStackTrace(e.getStackTraceString()).setType('Field Service').create();
             }
         }
     }
@@ -127,8 +124,7 @@ public with sharing class FSM_ServiceAppointmentTriggerHelper {
                     }
                 }
             }
-            if(!allServAppForpolygon.isEmpty()){
-                checkConditions(allServAppForpolygon);
+            if(!allServAppForpolygon.isEmpty()){checkConditions(allServAppForpolygon);
             }
         }
     }
@@ -171,12 +167,41 @@ public with sharing class FSM_ServiceAppointmentTriggerHelper {
         }
     }
     
+    public void updateWorkMateJobTimeEntries(Map<Id,sObject> newMap,Map<Id,sObject> oldMap){
+        Map<Id, ServiceAppointment> allNewSa=(Map<Id, ServiceAppointment>)newMap; //collecting all updated SA
+        Map<Id, ServiceAppointment> allOldSa=(Map<Id, ServiceAppointment>)oldMap; //collecting all updated SA
+        List<ServiceAppointment> acceptedAppointments=new List<ServiceAppointment>();
+        try{
+            for(ServiceAppointment sa:allNewSa.values()){
+                if(sa.FSM_Is_Workmate_User__c ==true && sa.Status != allOldSa.get(sa.id).Status && sa.Status=='Completed'){
+                    sa.FSM_TimeEventType__c='Productive Time';
+                    sa.FSM_ProductiveStartTime__c=System.today();
+                    sa.FSM_ProductiveEndTime__c=sa.FSM_ProductiveStartTime__c.addMinutes(1);
+                }else if(sa.FSM_Is_Workmate_User__c ==true && sa.Status != allOldSa.get(sa.id).Status && sa.Status=='Accepted'){
+                    acceptedAppointments.add(sa);
+                }
+            }
+            if(acceptedAppointments.size()>0){
+                Id currentUserId=UserInfo.getUserId();
+                ServiceResource resource=[Select id,RelatedRecordId from ServiceResource where RelatedRecordId=:currentUserId];
+                if(resource != null){
+                    for(ServiceAppointment a:acceptedAppointments){
+                        a.FSSK__FSK_Assigned_Service_Resource__c=resource.id;
+                    }
+                }
+            }
+            
+        }Catch(Exception e){
+            
+        }       
+        
+    }
     /********************************************************************************************************
     @Author      : Subir Maji
     @Description : This method Will get teh relavant Service territory information.
     @Description : Created as part of user story #SFL-68
     @input       : allStId
-    @output      : Map<Id, ServiceTerritory>
+    @output      : Map<Id, ServiceTerritory>  
     @Date        : 17-Nov-2024
     ********************************************************************************************************/
     private Map<Id, ServiceTerritory> getServiceTerritory(Set<Id> allStId){
@@ -282,8 +307,7 @@ public with sharing class FSM_ServiceAppointmentTriggerHelper {
                     stFlag = false;
                     for(FSM_BatchProcess__mdt mdt : allmdt){
                         if(mdt.Service_Territory__c == st.Name){
-                            stFlag = true;
-                            break;
+                            stFlag = true;break;
                         }
                     }
                     if(stFlag){
@@ -291,7 +315,7 @@ public with sharing class FSM_ServiceAppointmentTriggerHelper {
                     }
                 }
             }
-            
+             
             //Go through all Appointments and populate Auto Schedule and policy
             for(ServiceAppointment sa : newServiceAppointment){
                 System.debug('SA inside loop');
@@ -299,12 +323,9 @@ public with sharing class FSM_ServiceAppointmentTriggerHelper {
                 if(allterritory.ContainsKey(sa.ServiceTerritoryId) 
                    && sa.FSM_IsTemporaryRecord__c != true
                    && allWorkOrder.get(sa.ParentRecordId).FSM_WorkTypeCode__c != 'SELF'
-                   && (allWorkOrder.get(sa.ParentRecordId).FSM_TMAPermit__c == null
-                   || (allWorkOrder.get(sa.ParentRecordId).FSM_TMAPermit__r.FSM_NoticeType__c != '05'
-                   && allWorkOrder.get(sa.ParentRecordId).FSM_TMAPermit__r.FSM_NoticeType__c != '04'))
+                   && (allWorkOrder.get(sa.ParentRecordId).FSM_TMAPermit__c == null || (allWorkOrder.get(sa.ParentRecordId).FSM_TMAPermit__r.FSM_NoticeType__c != '05'&& allWorkOrder.get(sa.ParentRecordId).FSM_TMAPermit__r.FSM_NoticeType__c != '04'))
                 ){
-                    if(sa.ArrivalWindowEndTime != null && sa.ArrivalWindowStartTime != null 
-                       && allterritory.get(sa.ServiceTerritoryId).FSM_SchedulingPolicy__c != null){
+                    if(sa.ArrivalWindowEndTime != null && sa.ArrivalWindowStartTime != null && allterritory.get(sa.ServiceTerritoryId).FSM_SchedulingPolicy__c != null){
                         sa.FSL__Auto_Schedule__c = true;
                         sa.FSL__Scheduling_Policy_Used__c = allterritory.get(sa.ServiceTerritoryId).FSM_SchedulingPolicy__c;
                     }else if(sa.ArrivalWindowEndTime == null && sa.ArrivalWindowStartTime == null 
