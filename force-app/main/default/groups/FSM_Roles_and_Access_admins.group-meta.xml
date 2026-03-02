@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Created a part of SRQ0002001069 - Anup</description>
+    <doesIncludeBosses>true</doesIncludeBosses>
+    <name>FSM Roles and Access admins</name>
+</Group>

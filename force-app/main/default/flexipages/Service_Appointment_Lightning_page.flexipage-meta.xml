@@ -1631,6 +1631,44 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.FSM_OnHoldReason__c</fieldItem>
+                <identifier>RecordFSM_OnHoldReason_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.FSM_OnHoldComments__c</fieldItem>
+                <identifier>RecordFSM_OnHoldComments_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-9540054b-075b-4a27-a1d2-f3c6c06a6959</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-9540054b-075b-4a27-a1d2-f3c6c06a6959</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column33</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-712bf135-8293-4132-bf08-229bb6a50de4</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.FSM_SiteNameAuto__c</fieldItem>
@@ -1725,6 +1763,16 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.FSL__GanttLabel__c</fieldItem>
                 <identifier>RecordFSL_GanttLabel_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.FSL__GanttColor__c</fieldItem>
+                <identifier>RecordFSL_GanttColor_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-0933337b-e0b9-4d50-a5ef-fadbb18380df</name>
@@ -2211,6 +2259,24 @@
                 </componentInstanceProperties>
                 <componentName>flexipage:fieldSection</componentName>
                 <identifier>flexipage_fieldSection10</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>columns</name>
+                    <value>Facet-712bf135-8293-4132-bf08-229bb6a50de4</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>On Hold Details</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:fieldSection</componentName>
+                <identifier>flexipage_fieldSection18</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
