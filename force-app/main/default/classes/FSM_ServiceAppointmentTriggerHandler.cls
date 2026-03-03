@@ -43,7 +43,7 @@ public class FSM_ServiceAppointmentTriggerHandler implements FSM_TriggerBaseHand
        helper.casePopulationForParentBundle(newmap,oldMap);//Added as part of user story #SFL-132 11th Dec 24 by Subir Maji
     }
     
-    /**
+    /** 
     * @description :to handle before update logic
     * @param newMap
     * @param oldMap
@@ -55,6 +55,7 @@ public class FSM_ServiceAppointmentTriggerHandler implements FSM_TriggerBaseHand
             helper.polygonUpdate(false, null, newMap,oldMap); 
             helper.autoScheduleUpdate(false, null, newMap,oldMap);
             helper.mailJetFieldsReset(newMap,oldMap);
+            helper.updateWorkMateJobTimeEntries(newMap,oldMap); 
             isVisited = true;
         }
     } 
