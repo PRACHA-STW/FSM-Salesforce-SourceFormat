@@ -553,7 +553,7 @@ Updated as part of SFS-1426 - Removed cumalative and latest non-productive time<
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>$Record.FSM_EnableAutoReschedule__c</assignToReference>
+            <assignToReference>$Record.FSL__Auto_Schedule__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <booleanValue>true</booleanValue>
@@ -4194,7 +4194,7 @@ Updated as part of SFL-855 which also fix SFL719 and SFL-757 to add the temporar
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>InJeopardy_Flag_True</name>
-            <conditionLogic>1 AND ((2 AND 3) OR (4 AND 5) OR (6 AND 7) OR (((8 AND 9) OR 10) AND 11 AND 12) OR (13 AND 14 AND(15 OR 16 OR 17 OR 18 OR 19 OR 20)) OR (23 AND 24 AND 25 AND 26)) OR (21 AND 22 AND 27 AND 28) OR (1 AND 29)</conditionLogic>
+            <conditionLogic>1 AND ((2 AND 3) OR (4 AND 5) OR (6 AND 7) OR (((8 AND 9) OR 10) AND 11 AND 12) OR (13 AND 14 AND(15 OR 16 OR 17 OR 18 OR 19 OR 20)) OR (23 AND 24 AND 25 AND 26)) OR (21 AND 22 AND 27 AND 28) OR (1 AND 29) OR (1 AND 3 AND 30)</conditionLogic>
             <conditions>
                 <leftValueReference>$Record.FSL__InJeopardy__c</leftValueReference>
                 <operator>EqualTo</operator>
@@ -4396,6 +4396,13 @@ Updated as part of SFL-855 which also fix SFL719 and SFL-757 to add the temporar
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Rejected</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Cannot Complete</stringValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -5125,7 +5132,7 @@ updated as a part of SFL-1081
 updated as a part of SFL-1068
 Updated as part of SFL - 757
 Updated as part of SFL-890
-partial change on SFL-966</description>
+Anup - Updated as part of SRQ0001975173</description>
     <environments>Default</environments>
     <formulas>
         <description>SFS-8155</description>
@@ -5196,16 +5203,6 @@ VALUE(LEFT(RIGHT(TEXT({!$Flow.CurrentDateTime}), 9), 2)) &lt; 12,
         <name>EstimatedStartDate</name>
         <dataType>Date</dataType>
         <expression>DATEVALUE({!$Record.FSSK__FSK_Work_Order__r.FSM_TMAPermit__r.FSM_PermitStartDate__c})</expression>
-    </formulas>
-    <formulas>
-        <name>formulaenddatechange</name>
-        <dataType>DateTime</dataType>
-        <expression>IF( ISBLANK({!$Record.SchedStartTime}), NULL, DATETIMEVALUE( TEXT( DATEVALUE({!$Record.SchedStartTime}) ) &amp; &quot; 23:59:58&quot; ) )</expression>
-    </formulas>
-    <formulas>
-        <name>formulastartdatechange</name>
-        <dataType>DateTime</dataType>
-        <expression>IF( ISBLANK({!$Record.SchedStartTime}), NULL, DATETIMEVALUE( TEXT( DATEVALUE({!$Record.SchedStartTime}) ) &amp; &quot; 00:00:00&quot; ) )</expression>
     </formulas>
     <formulas>
         <name>Is2HrJob</name>
@@ -6461,7 +6458,7 @@ Updated as part of SFS-8499</description>
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordBeforeSave</triggerType>
     </start>
-    <status>Obsolete</status>
+    <status>Active</status>
     <textTemplates>
         <description>SFS-6025</description>
         <name>GeneralFieldWorkerCommentTemplate</name>
@@ -6485,13 +6482,6 @@ Updated as part of SFS-8499</description>
         <name>AssignedResource</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>assignedresourcesids</name>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
     </variables>
@@ -6577,22 +6567,6 @@ Updated as part of SFS-8499</description>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>overlappingBreaks</name>
-        <dataType>SObject</dataType>
-        <isCollection>true</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <objectType>ResourceAbsence</objectType>
-    </variables>
-    <variables>
-        <name>overlappingbreaksssSingle</name>
-        <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <objectType>ResourceAbsence</objectType>
     </variables>
     <variables>
         <name>polygonLookup</name>

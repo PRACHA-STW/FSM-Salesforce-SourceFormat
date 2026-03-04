@@ -156,4 +156,20 @@
         </criteriaItems>
         <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
     </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>SR_share_with_Roles_and_Access_admin_team</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Anup - Created as part of SRQ0002001069 to share all the service resource records with Roles and access management team to update.</description>
+        <label>SR share with Roles and Access admin team</label>
+        <sharedTo>
+            <group>FSM_Roles_and_Access_admins</group>
+        </sharedTo>
+        <booleanFilter>1</booleanFilter>
+        <criteriaItems>
+            <field>FSM_BusinessUnit__c</field>
+            <operation>equals</operation>
+            <value>Waste Infra,Waste Non Infra,Water Infra,Water Non Infra,Bio Resource,Developer Services,Metering</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
 </SharingRules>
