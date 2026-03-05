@@ -5040,6 +5040,22 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>D 71</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>D 72</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>D 73</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>D 74</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>D 8</fullName>
             <default>false</default>
         </values>
@@ -5420,6 +5436,10 @@
         </values>
         <values>
             <fullName>68</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>69</fullName>
             <default>false</default>
         </values>
         <values>

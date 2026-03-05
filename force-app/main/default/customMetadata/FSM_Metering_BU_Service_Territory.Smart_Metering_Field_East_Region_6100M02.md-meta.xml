@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Smart Metering Field East Region 6100M02</label>
+    <protected>false</protected>
+    <values>
+        <field>IsActive__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+    <values>
+        <field>Service_Territory_Business_Unit__c</field>
+        <value xsi:type="xsd:string">Metering</value>
+    </values>
+    <values>
+        <field>Service_Territory_External_Id__c</field>
+        <value xsi:type="xsd:string">6100M02</value>
+    </values>
+    <values>
+        <field>Service_Territory_Name__c</field>
+        <value xsi:type="xsd:string">6100M02 Smart Metering Field East Region</value>
+    </values>
+</CustomMetadata>

@@ -211,4 +211,9 @@
         <default>false</default>
         <label>2nd Call Standby</label>
     </standardValue>
+    <standardValue>
+        <fullName>New Opportunities</fullName>
+        <default>false</default>
+        <label>New Opportunities</label>
+    </standardValue>
 </StandardValueSet>

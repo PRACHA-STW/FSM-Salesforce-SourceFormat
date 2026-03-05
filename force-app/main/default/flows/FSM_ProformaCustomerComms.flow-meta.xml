@@ -4,7 +4,7 @@
     <assignments>
         <name>Assign_Comm_Type</name>
         <label>Assign Comm Type</label>
-        <locationX>446</locationX>
+        <locationX>710</locationX>
         <locationY>974</locationY>
         <assignmentItems>
             <assignToReference>commType</assignToReference>
@@ -20,7 +20,7 @@
     <assignments>
         <name>Assign_Record_Id</name>
         <label>Assign Record Id</label>
-        <locationX>380</locationX>
+        <locationX>578</locationX>
         <locationY>242</locationY>
         <assignmentItems>
             <assignToReference>Id</assignToReference>
@@ -51,7 +51,7 @@
         <description>Updated as part of SFS-8263 and SFS-8264</description>
         <name>Assign_SA_Id</name>
         <label>Assign SA Id</label>
-        <locationX>248</locationX>
+        <locationX>446</locationX>
         <locationY>2114</locationY>
         <assignmentItems>
             <assignToReference>SASingleRecordVar.Id</assignToReference>
@@ -82,7 +82,7 @@
         <name>Assign_Task</name>
         <label>Assign Task</label>
         <locationX>50</locationX>
-        <locationY>974</locationY>
+        <locationY>1190</locationY>
         <assignmentItems>
             <assignToReference>commType</assignToReference>
             <operator>Assign</operator>
@@ -97,7 +97,7 @@
     <assignments>
         <name>Assign_User_ID</name>
         <label>Assign User ID</label>
-        <locationX>116</locationX>
+        <locationX>314</locationX>
         <locationY>242</locationY>
         <assignmentItems>
             <assignToReference>CurrentUserIdFinal</assignToReference>
@@ -121,7 +121,7 @@
         <description>Updated as part of SFS-8263 and SFS-8264</description>
         <name>Copy_1_of_Assign_SA_Id</name>
         <label>Copy 1 of Assign SA Id</label>
-        <locationX>578</locationX>
+        <locationX>842</locationX>
         <locationY>1406</locationY>
         <assignmentItems>
             <assignToReference>SASingleRecordVar.Id</assignToReference>
@@ -146,6 +146,51 @@
         </assignmentItems>
         <connector>
             <targetReference>Copy_1_of_Update_SA</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Updated as part of SFS-8263 and SFS-8264</description>
+        <name>Copy_1_of_Copy_1_of_Assign_SA_Id</name>
+        <label>Copy 1 of Copy 1 of Assign SA Id</label>
+        <locationX>314</locationX>
+        <locationY>1298</locationY>
+        <assignmentItems>
+            <assignToReference>SASingleRecordVar.Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SASingleRecordVar.FSM_MailjetFieldUpdateDateAndTime__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Flow.CurrentDateTime</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SASingleRecordVar.FSM_MailJetFieldsToBeBlanked__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>BlankFields</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SASingleRecordVar.FSM_ListOfTemplates__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>TemplateTypeProforma</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SASingleRecordVar.FSM_Telephone2__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>CustTelephone</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Copy_1_of_Copy_1_of_Update_SA</targetReference>
         </connector>
     </assignments>
     <choices>
@@ -270,7 +315,7 @@
     <decisions>
         <name>Check_Comm_Type_Leaflet</name>
         <label>Check Comm Type : Leaflet ?</label>
-        <locationX>446</locationX>
+        <locationX>710</locationX>
         <locationY>1082</locationY>
         <defaultConnector>
             <targetReference>FSM_SubFlow_Proforma</targetReference>
@@ -293,10 +338,35 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Check_If_Smart_Meter</name>
+        <label>Check If Smart Meter</label>
+        <locationX>182</locationX>
+        <locationY>974</locationY>
+        <defaultConnector>
+            <targetReference>Copy_1_of_FSM_SubFlow_Proforma</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Does_Not_Below_to_Smart_Metering</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>SASingleRecordVar.FSM_ServiceTerritoryName__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>recSingleMeteringBUServTerri.Service_Territory_Name__c</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Customer_Comms_Metering</targetReference>
+            </connector>
+            <label>Does Not Below to Smart Metering</label>
+        </rules>
+    </decisions>
+    <decisions>
         <description>Created as Part of SFS-5349</description>
         <name>Is_Metering_BU</name>
         <label>Is Metering BU ?</label>
-        <locationX>248</locationX>
+        <locationX>446</locationX>
         <locationY>758</locationY>
         <defaultConnector>
             <targetReference>Select_Communication_Type</targetReference>
@@ -313,7 +383,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Customer_Comms_Metering</targetReference>
+                <targetReference>Get_FSM_Metering_BU_Service_Territory_From_CustMetaData</targetReference>
             </connector>
             <label>Yes</label>
         </rules>
@@ -321,7 +391,7 @@
     <decisions>
         <name>Mobile_Or_Desktop</name>
         <label>Mobile Or Desktop?</label>
-        <locationX>248</locationX>
+        <locationX>446</locationX>
         <locationY>134</locationY>
         <defaultConnector>
             <targetReference>Assign_Record_Id</targetReference>
@@ -589,7 +659,7 @@ Updated as part of SFS-8263 and SFS-8264</description>
     <recordCreates>
         <name>Create_Task_Records</name>
         <label>Create Task Records</label>
-        <locationX>248</locationX>
+        <locationX>446</locationX>
         <locationY>2330</locationY>
         <inputAssignments>
             <field>OwnerId</field>
@@ -630,9 +700,32 @@ Updated as part of SFS-8263 and SFS-8264</description>
         <object>Task</object>
     </recordCreates>
     <recordLookups>
+        <name>Copy_1_of_Get_Service_Report_Template_Id</name>
+        <label>Copy 1 of Get Service Report Template Id</label>
+        <locationX>314</locationX>
+        <locationY>1514</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Copy_1_of_Update_Service_Report_Template_Id_on_Workorder</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>FSM_TemplateName__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>TemplateTypeProforma</elementReference>
+            </value>
+        </filters>
+        <object>FSM_ServiceReportTemplates__mdt</object>
+        <outputAssignments>
+            <assignToReference>ServiceReportTemplateRecId</assignToReference>
+            <field>FSM_TemplateId__c</field>
+        </outputAssignments>
+    </recordLookups>
+    <recordLookups>
         <name>Get_Current_SA_Record</name>
         <label>Get Current SA Record</label>
-        <locationX>248</locationX>
+        <locationX>446</locationX>
         <locationY>542</locationY>
         <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -654,11 +747,47 @@ Updated as part of SFS-8263 and SFS-8264</description>
         <queriedFields>FSSK__FSK_Work_Order__c</queriedFields>
         <queriedFields>FSM_WorkOrderAddr__c</queriedFields>
         <queriedFields>FSM_SAPWorkorderNumber__c</queriedFields>
+        <queriedFields>FSM_ProformaDescriptionOfWork__c</queriedFields>
+        <queriedFields>FSM_Location__c</queriedFields>
+        <queriedFields>FSM_CustomerName__c</queriedFields>
+        <queriedFields>FSM_ServiceTerritoryName__c</queriedFields>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_FSM_Metering_BU_Service_Territory_From_CustMetaData</name>
+        <label>Get FSM Metering BU Service Territory From CustMetaData</label>
+        <locationX>182</locationX>
+        <locationY>866</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Check_If_Smart_Meter</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Service_Territory_Name__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>SASingleRecordVar.FSM_ServiceTerritoryName__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>IsActive__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>FSM_Metering_BU_Service_Territory__mdt</object>
+        <outputReference>recSingleMeteringBUServTerri</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Service_Territory_Name__c</queriedFields>
+        <queriedFields>Service_Territory_External_Id__c</queriedFields>
+        <queriedFields>IsActive__c</queriedFields>
+        <queriedFields>Service_Territory_Business_Unit__c</queriedFields>
     </recordLookups>
     <recordLookups>
         <name>Get_Loggedin_User</name>
         <label>Get Loggedin User</label>
-        <locationX>248</locationX>
+        <locationX>446</locationX>
         <locationY>434</locationY>
         <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -681,7 +810,7 @@ Updated as part of SFS-8263 and SFS-8264</description>
     <recordLookups>
         <name>Get_Related_WorkOrder</name>
         <label>Get Related WorkOrder</label>
-        <locationX>248</locationX>
+        <locationX>446</locationX>
         <locationY>650</locationY>
         <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -744,7 +873,7 @@ Updated as part of SFS-8263 and SFS-8264</description>
     <recordLookups>
         <name>Get_Service_Report_Template_Id</name>
         <label>Get Service Report Template Id</label>
-        <locationX>578</locationX>
+        <locationX>842</locationX>
         <locationY>1622</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -765,9 +894,19 @@ Updated as part of SFS-8263 and SFS-8264</description>
         </outputAssignments>
     </recordLookups>
     <recordUpdates>
+        <name>Copy_1_of_Copy_1_of_Update_SA</name>
+        <label>Copy 1 of Copy 1 of Update SA</label>
+        <locationX>314</locationX>
+        <locationY>1406</locationY>
+        <connector>
+            <targetReference>Copy_1_of_Get_Service_Report_Template_Id</targetReference>
+        </connector>
+        <inputReference>SASingleRecordVar</inputReference>
+    </recordUpdates>
+    <recordUpdates>
         <name>Copy_1_of_Update_SA</name>
         <label>Copy 1 of Update SA</label>
-        <locationX>578</locationX>
+        <locationX>842</locationX>
         <locationY>1514</locationY>
         <connector>
             <targetReference>Get_Service_Report_Template_Id</targetReference>
@@ -775,9 +914,30 @@ Updated as part of SFS-8263 and SFS-8264</description>
         <inputReference>SASingleRecordVar</inputReference>
     </recordUpdates>
     <recordUpdates>
+        <name>Copy_1_of_Update_Service_Report_Template_Id_on_Workorder</name>
+        <label>Copy 1 of Update Service Report Template Id on Workorder</label>
+        <locationX>314</locationX>
+        <locationY>1622</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>WoId</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>ServiceReportTemplateId</field>
+            <value>
+                <elementReference>ServiceReportTemplateRecId</elementReference>
+            </value>
+        </inputAssignments>
+        <object>WorkOrder</object>
+    </recordUpdates>
+    <recordUpdates>
         <name>Update_SA</name>
         <label>Update SA</label>
-        <locationX>248</locationX>
+        <locationX>446</locationX>
         <locationY>2222</locationY>
         <connector>
             <targetReference>Create_Task_Records</targetReference>
@@ -787,7 +947,7 @@ Updated as part of SFS-8263 and SFS-8264</description>
     <recordUpdates>
         <name>Update_Service_Report_Template_Id_on_Workorder</name>
         <label>Update Service Report Template Id on Workorder</label>
-        <locationX>578</locationX>
+        <locationX>842</locationX>
         <locationY>1730</locationY>
         <filterLogic>and</filterLogic>
         <filters>
@@ -808,7 +968,7 @@ Updated as part of SFS-8263 and SFS-8264</description>
     <screens>
         <name>Select_Communication_Type</name>
         <label>Select Communication Type</label>
-        <locationX>446</locationX>
+        <locationX>710</locationX>
         <locationY>866</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
@@ -838,7 +998,7 @@ Updated as part of SFS-8263 and SFS-8264</description>
         <showHeader>true</showHeader>
     </screens>
     <start>
-        <locationX>122</locationX>
+        <locationX>320</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Mobile_Or_Desktop</targetReference>
@@ -846,10 +1006,163 @@ Updated as part of SFS-8263 and SFS-8264</description>
     </start>
     <status>Active</status>
     <subflows>
+        <description>SFS-8263 and SFS-8264</description>
+        <name>Copy_1_of_FSM_ProformaLeafletVariableAssignmentBlankSubFlow_Flow_1_Proforma</name>
+        <label>Copy 1 of FSM_ProformaLeafletVariableAssignmentBlankSubFlow Flow 1 Proforma</label>
+        <locationX>314</locationX>
+        <locationY>1190</locationY>
+        <connector>
+            <targetReference>Copy_1_of_Copy_1_of_Assign_SA_Id</targetReference>
+        </connector>
+        <flowName>FSM_ProformaLeafletVariableAssignmentBlankSubFlow</flowName>
+        <inputAssignments>
+            <name>CustTelephone</name>
+            <value>
+                <elementReference>CustTelephone</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>SASingleRecordVar</name>
+            <value>
+                <elementReference>SASingleRecordVar</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Telephone</name>
+            <value>
+                <elementReference>Telephone</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Telephone2</name>
+            <value>
+                <elementReference>Telephone2</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Type</name>
+            <value>
+                <stringValue>Proforma</stringValue>
+            </value>
+        </inputAssignments>
+        <outputAssignments>
+            <assignToReference>BlankFields</assignToReference>
+            <name>BlankFields</name>
+        </outputAssignments>
+    </subflows>
+    <subflows>
+        <name>Copy_1_of_FSM_SubFlow_Proforma</name>
+        <label>Copy 1 of FSM SubFlow Proforma</label>
+        <locationX>314</locationX>
+        <locationY>1082</locationY>
+        <connector>
+            <targetReference>Copy_1_of_FSM_ProformaLeafletVariableAssignmentBlankSubFlow_Flow_1_Proforma</targetReference>
+        </connector>
+        <flowName>FSM_Mobile_SubFlow_Proforma</flowName>
+        <inputAssignments>
+            <name>BusinessUnit</name>
+            <value>
+                <elementReference>SASingleRecordVar.FSM_BusinessUnit__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>saAddress</name>
+            <value>
+                <elementReference>SASingleRecordVar.FSM_WorkOrderAddr__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>varCurrentUserName</name>
+            <value>
+                <elementReference>var_loggedinUSER</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>woAddress</name>
+            <value>
+                <elementReference>woAddress</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>woCity</name>
+            <value>
+                <elementReference>woCity</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>WoContactEmail</name>
+            <value>
+                <elementReference>WoContactEmail</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>WoContactName</name>
+            <value>
+                <elementReference>WoContactName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>woContactNumber</name>
+            <value>
+                <elementReference>woContactNumber</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>woCountry</name>
+            <value>
+                <elementReference>woCountry</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>woOrderNumber</name>
+            <value>
+                <elementReference>SASingleRecordVar.FSM_SAPWorkorderNumber__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>woPostalCode</name>
+            <value>
+                <elementReference>woPostalcode</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>woState</name>
+            <value>
+                <elementReference>woState</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>woStreet</name>
+            <value>
+                <elementReference>woStreet</elementReference>
+            </value>
+        </inputAssignments>
+        <outputAssignments>
+            <assignToReference>CustTelephone</assignToReference>
+            <name>CustTelephone</name>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>SASingleRecordVar</assignToReference>
+            <name>SASingleRecordVar</name>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>Telephone2</assignToReference>
+            <name>Telephone2</name>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>Telephone</assignToReference>
+            <name>TelephoneAssign</name>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>TemplateTypeProforma</assignToReference>
+            <name>TemplateTypeAssignment</name>
+        </outputAssignments>
+    </subflows>
+    <subflows>
         <name>Customer_Comms_Metering</name>
         <label>Customer Comms Metering</label>
         <locationX>50</locationX>
-        <locationY>866</locationY>
+        <locationY>1082</locationY>
         <connector>
             <targetReference>Assign_Task</targetReference>
         </connector>
@@ -879,7 +1192,7 @@ Updated as part of SFS-8263 and SFS-8264</description>
         <description>created as part of SFS-5345</description>
         <name>FSM_Mobile_Subflow_Leaflet</name>
         <label>FSM Mobile Subflow  - Leaflet</label>
-        <locationX>314</locationX>
+        <locationX>578</locationX>
         <locationY>1190</locationY>
         <connector>
             <targetReference>FSM_ProformaLeafletVariableAssignmentBlankSubFlow_Flow_1_Leaflet</targetReference>
@@ -929,7 +1242,7 @@ Updated as part of SFS-8263 and SFS-8264</description>
         <name>FSM_ProformaLeafletVariableAssignmentBlankSubFlow_Flow_1</name>
         <label>FSM_ProformaLeafletVariableAssignmentBlankSubFlow Flow 1</label>
         <locationX>50</locationX>
-        <locationY>1082</locationY>
+        <locationY>1298</locationY>
         <connector>
             <targetReference>Assign_SA_Id</targetReference>
         </connector>
@@ -955,7 +1268,7 @@ Updated as part of SFS-8263 and SFS-8264</description>
         <description>SFS-8263 and SFS-8264</description>
         <name>FSM_ProformaLeafletVariableAssignmentBlankSubFlow_Flow_1_Leaflet</name>
         <label>FSM_ProformaLeafletVariableAssignmentBlankSubFlow Flow 1 Leaflet</label>
-        <locationX>314</locationX>
+        <locationX>578</locationX>
         <locationY>1298</locationY>
         <connector>
             <targetReference>Assign_SA_Id</targetReference>
@@ -982,7 +1295,7 @@ Updated as part of SFS-8263 and SFS-8264</description>
         <description>SFS-8263 and SFS-8264</description>
         <name>FSM_ProformaLeafletVariableAssignmentBlankSubFlow_Flow_1_Proforma</name>
         <label>FSM_ProformaLeafletVariableAssignmentBlankSubFlow Flow 1 Proforma</label>
-        <locationX>578</locationX>
+        <locationX>842</locationX>
         <locationY>1298</locationY>
         <connector>
             <targetReference>Copy_1_of_Assign_SA_Id</targetReference>
@@ -1026,7 +1339,7 @@ Updated as part of SFS-8263 and SFS-8264</description>
     <subflows>
         <name>FSM_SubFlow_Proforma</name>
         <label>FSM SubFlow Proforma</label>
-        <locationX>578</locationX>
+        <locationX>842</locationX>
         <locationY>1190</locationY>
         <connector>
             <targetReference>FSM_ProformaLeafletVariableAssignmentBlankSubFlow_Flow_1_Proforma</targetReference>
@@ -1181,6 +1494,15 @@ Updated as part of SFS-8263 and SFS-8264</description>
         <isCollection>false</isCollection>
         <isInput>true</isInput>
         <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Metering BU Service Territory</description>
+        <name>recSingleMeteringBUServTerri</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>FSM_Metering_BU_Service_Territory__mdt</objectType>
     </variables>
     <variables>
         <name>SABusinessUnit</name>
