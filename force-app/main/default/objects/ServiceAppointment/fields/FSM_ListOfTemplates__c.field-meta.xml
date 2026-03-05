@@ -230,6 +230,11 @@
                 <default>false</default>
                 <label>We have completed the work – Clean Up has been requested</label>
             </value>
+            <value>
+                <fullName>Internal Pipework Modification</fullName>
+                <default>false</default>
+                <label>Internal Pipework Modification</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
