@@ -37,7 +37,8 @@ public with Sharing class FSM_ServiceReportTriggerHelper {
                                                    'HD - Leak on Private Supply Pipe (English version)',
                                                    'HD - BOPPs 3rd Party',
                                                    'BOPPS 3rd Party',
-            									   'HD - Leak on Private Supply Pipe (Welsh version)'};
+            									   'HD - Leak on Private Supply Pipe (Welsh version)',
+                                                   'Internal Pipework Modification'};
         
         // get template ids for Proforma from Service report template cmdt
         List<FSM_ServiceReportTemplates__mdt> ServReportTempName = [Select Id,FSM_TemplateName__c,FSM_TemplateId__c 
