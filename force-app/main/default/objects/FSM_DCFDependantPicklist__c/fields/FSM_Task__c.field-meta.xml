@@ -430,6 +430,26 @@
                 <default>false</default>
                 <label>GAS DETECTION</label>
             </value>
+            <value>
+                <fullName>D 71</fullName>
+                <default>false</default>
+                <label>SMART METER- REPAIR</label>
+            </value>
+            <value>
+                <fullName>D 72</fullName>
+                <default>false</default>
+                <label>SMART METER- INSPECTION</label>
+            </value>
+            <value>
+                <fullName>D 73</fullName>
+                <default>false</default>
+                <label>SMART METER INSTALL</label>
+            </value>
+            <value>
+                <fullName>D 74</fullName>
+                <default>false</default>
+                <label>SMART METER- RENEW</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

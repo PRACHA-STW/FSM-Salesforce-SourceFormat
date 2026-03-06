@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
-    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <excludeButtons>WorkStepNotApplicable</excludeButtons>
     <layoutSections>
@@ -143,6 +142,11 @@
             <actionType>QuickAction</actionType>
             <sortOrder>5</sortOrder>
         </platformActionListItems>
+        <platformActionListItems>
+            <actionName>WorkStep.Follow_on_work_request_Infra</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>6</sortOrder>
+        </platformActionListItems>
     </platformActionList>
     <relatedLists>
         <fields>TASK.SUBJECT</fields>
@@ -176,7 +180,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hQz000004kHRl</masterLabel>
+        <masterLabel>00hPz000003zbz8</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
