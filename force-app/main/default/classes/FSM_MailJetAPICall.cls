@@ -177,7 +177,8 @@ public with sharing Class FSM_MailJetAPICall {
                         }
                     }else{ //For Proforma
                         templateID = Integer.valueOf(System.Label.FSM_MailjetProformaTemplateID); //Performa have static Template ID
-                        //added this for Internal Pipework Modification  Saurabh Gupta -16/02/26
+                        //added this for Internal Pipework Modification  Saurabh Gupta -16/02/26  //WWTC-3183
+                        //start updated as part WWTC-3183
                         if(servApp.FSM_ListOfTemplates__c == 'Internal Pipework Modification'){
                                if(inputs.language == 'English' || inputs.language == null || inputs.language == ''){
                             		templateID = Integer.valueOf(templateNameTemplateIDMap.get(servApp.FSM_ListOfTemplates__c));//Leaflet template ID English
@@ -186,10 +187,11 @@ public with sharing Class FSM_MailJetAPICall {
                                 } 
                                 fieldNameValueMap.put('FSM_ProformaDescriptionOfWork__c',servApp.FSM_ProformaDescriptionOfWork__c);
                         		fieldNameValueMap.put('FSM_Location__c', servApp.FSM_Location__c);
-                                // changed by : MB(Cognizant) - 17/02/26 
+                                // changed by : MB(Cognizant) - 17/02/26  //WWTC-3183 
                                 fieldNameValueMap.put('DateAndTime',String.valueOf(servApp.Date__c));
                                 fieldNameValueMap.put('FSM_WorkOrderAddr__c',String.valueOf(servApp.FSM_WorkOrderAddr__c));
                         }                       
+                        //end updated as part WWTC-3183
                         
                         fieldNameValueMap.put('FSM_SAPWorkorderNumber__c',servApp.FSM_SAPWorkorderNumber__c);//Setting SAP WO Number for Performa, Added as part of SFS-8124 By Subir Maji 6th Nov 24
                         fieldNameValueMap.put('FSM_CustomerName__c', customerName);//Setting Customer Name for Performa, Added as part of SFS-8124 By Subir Maji 6th Nov 24
