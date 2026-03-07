@@ -2259,7 +2259,7 @@
         <description>SFS-8263 and SFS-8264</description>
         <name>CollectBlankFieldsProforma</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
-        <text>FSM_ProformaAction__c//Date__c//FSM_LeakShowing__c//FSM_SingleOrJoint__c//FSM_PropertyNumbersIfJoint__c//FSM_ProformaCustomerAddress__c//FSM_LeakResponsibilityDeclaration__c//FSM_CustomerTelephone__c//FSM_Telephone__c//FSM_Telephone2__c//FSM_ProformaOwnerAddressIfDifferent__c//FSM_ProformaDescriptionOfWork__c//FSM_Location__c//FSM_SurfaceType__c//FSM_OtherSurfaceType__c//</text>
+        <text>FSM_ProformaAction__c//Date__c//FSM_LeakShowing__c//FSM_SingleOrJoint__c//FSM_PropertyNumbersIfJoint__c//FSM_ProformaCustomerAddress__c//FSM_LeakResponsibilityDeclaration__c//FSM_CustomerTelephone__c//FSM_Telephone__c//FSM_Telephone2__c//FSM_ProformaOwnerAddressIfDifferent__c//FSM_SurfaceType__c//FSM_OtherSurfaceType__c//</text>
     </textTemplates>
     <variables>
         <description>SFS-8263 and SFS-8264</description>

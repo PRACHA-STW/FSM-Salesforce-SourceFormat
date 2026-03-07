@@ -65,7 +65,6 @@ public with sharing Class FSM_MailJetAPICall {
                           FSM_BusinessUnit__c IN: businessUnit AND 
                           FSM_IsGeneric__c = true WITH SECURITY_ENFORCED];
         }
-        
         //If found metadata then go through and populate map
         if(mailJetData != null && !mailJetData.isEmpty()){
             //Adding non generic fields
@@ -82,7 +81,6 @@ public with sharing Class FSM_MailJetAPICall {
                         businessUnitAndTemplateUniqueKey.get(mailJet.FSM_BusinessUnit__c).add(businessUnitTemplateUniqueKey);
 					}
 				}
-				
                 if(mailJet.FSM_FieldAPIName__c != null && !mailJet.FSM_IsGeneric__c){
 					if(businessUnitTemplateUniqueKeyFields.containsKey(businessUnitTemplateUniqueKey)){
                         businessUnitTemplateUniqueKeyFields.get(businessUnitTemplateUniqueKey).add(mailJet.FSM_FieldAPIName__c);
@@ -109,8 +107,7 @@ public with sharing Class FSM_MailJetAPICall {
 				}
             }
         }
-        
-		//Prepare the JSOn Body to be send to mailjet
+        //Prepare the JSOn Body to be send to mailjet
         try{
        		if(mailJetData != null && !mailJetData.isEmpty()){
                 taskIDJsonStringBodyMap = new MAP<String, String>();
@@ -124,6 +121,7 @@ public with sharing Class FSM_MailJetAPICall {
                     messagesFormat = new Cls_ALLMessages();
                     
                     servApp = inputs.serviceAppointmentRecord;
+                    system.debug('servApp Saurabh $$$ =  '+servApp);
                     customerName = servApp.FSM_CustomerName__c;//Added as part of SFS-8124 By Subir Maji 6th Nov 24
                     
                     //Setting To details
@@ -177,9 +175,25 @@ public with sharing Class FSM_MailJetAPICall {
                             }
                             fieldNameValueMap.put('DateAndTime',String.ValueOf(System.now())); //Updated this part as part of SFS-8124 by Subir Maji 6th Nov 24
                         }
-                    }else{ //For Performa
+                    }else{ //For Proforma
                         templateID = Integer.valueOf(System.Label.FSM_MailjetProformaTemplateID); //Performa have static Template ID
-						fieldNameValueMap.put('FSM_SAPWorkorderNumber__c',servApp.FSM_SAPWorkorderNumber__c);//Setting SAP WO Number for Performa, Added as part of SFS-8124 By Subir Maji 6th Nov 24
+                        //added this for Internal Pipework Modification  Saurabh Gupta -16/02/26  //WWTC-3183
+                        //start updated as part WWTC-3183
+                        if(servApp.FSM_ListOfTemplates__c == 'Internal Pipework Modification'){
+                               if(inputs.language == 'English' || inputs.language == null || inputs.language == ''){
+                            		templateID = Integer.valueOf(templateNameTemplateIDMap.get(servApp.FSM_ListOfTemplates__c));//Leaflet template ID English
+                                }else{
+                                    templateID = Integer.valueOf(templateNameWelshTemplateIDMap.get(servApp.FSM_ListOfTemplates__c));//Leaflet template ID Welsh
+                                } 
+                                fieldNameValueMap.put('FSM_ProformaDescriptionOfWork__c',servApp.FSM_ProformaDescriptionOfWork__c);
+                        		fieldNameValueMap.put('FSM_Location__c', servApp.FSM_Location__c);
+                                // changed by : MB(Cognizant) - 17/02/26  //WWTC-3183 
+                                fieldNameValueMap.put('DateAndTime',String.valueOf(servApp.Date__c));
+                                fieldNameValueMap.put('FSM_WorkOrderAddr__c',String.valueOf(servApp.FSM_WorkOrderAddr__c));
+                        }                       
+                        //end updated as part WWTC-3183
+                        
+                        fieldNameValueMap.put('FSM_SAPWorkorderNumber__c',servApp.FSM_SAPWorkorderNumber__c);//Setting SAP WO Number for Performa, Added as part of SFS-8124 By Subir Maji 6th Nov 24
                         fieldNameValueMap.put('FSM_CustomerName__c', customerName);//Setting Customer Name for Performa, Added as part of SFS-8124 By Subir Maji 6th Nov 24
                         fieldNameValueMap.put('FSM_OperativeName__c',servApp.FSM_OperativeName__c);//Setting Operative Name for Performa, Added as part of SFS-8124 By Subir Maji 6th Nov 24
                         //Set Email Attachments
@@ -213,7 +227,7 @@ public with sharing Class FSM_MailJetAPICall {
                     taskIDJsonStringBodyMap.put(inputs.taskRecordId, Json.serialize(messagesFormat).replace('From1','From'));
                 }
 				//Call Future Method
-                callMailJetAPI(taskIDJsonStringBodyMap);
+				callMailJetAPI(taskIDJsonStringBodyMap);
             }
             
         }catch(Exception ex){
@@ -326,7 +340,7 @@ public with sharing Class FSM_MailJetAPICall {
             req.SetBody(taskIDJsonStringBodyMap.get(taskId));
             req.setTimeout(120000);
             
-			res = http.send(req);
+            res = http.send(req);
             
 			//Collect request and response Body
             request = taskIDJsonStringBodyMap.get(taskId);

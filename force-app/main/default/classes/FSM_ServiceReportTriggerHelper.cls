@@ -25,6 +25,7 @@ public with Sharing class FSM_ServiceReportTriggerHelper {
         Map<ID,Task> allServRepTaskToBeCreatedMap;
         List<Task> taskToUpdate;
         List<ContentDocumentLink> allContentDocumentLinkInsert;
+         //added this for Internal Pipework Modification  Saurabh Gupta -15/01/26  //WWTC-3183
         SET<String> templateName = new Set<String>{'Emergency Land Entry Notice',
                                                    'Private Sewer Blockages',
                                                    'Permission to Dig',
@@ -37,7 +38,8 @@ public with Sharing class FSM_ServiceReportTriggerHelper {
                                                    'HD - Leak on Private Supply Pipe (English version)',
                                                    'HD - BOPPs 3rd Party',
                                                    'BOPPS 3rd Party',
-            									   'HD - Leak on Private Supply Pipe (Welsh version)'};
+            									   'HD - Leak on Private Supply Pipe (Welsh version)',
+                                                   'Internal Pipework Modification'};
         
         // get template ids for Proforma from Service report template cmdt
         List<FSM_ServiceReportTemplates__mdt> ServReportTempName = [Select Id,FSM_TemplateName__c,FSM_TemplateId__c 
