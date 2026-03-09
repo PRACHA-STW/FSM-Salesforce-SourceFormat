@@ -118,7 +118,7 @@
     <assignments>
         <name>Assign_contact_info_field_values</name>
         <label>Assign contact info field values</label>
-        <locationX>2877</locationX>
+        <locationX>3361</locationX>
         <locationY>566</locationY>
         <assignmentItems>
             <assignToReference>SASingleRecordVar.FSM_CustomerName__c</assignToReference>
@@ -174,6 +174,23 @@
         </assignmentItems>
         <connector>
             <targetReference>Proforma_Selection</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>https://stwater-cms.atlassian.net/browse/WWTC-3183</description>
+        <name>Assigning_BU_for_mailjet_Metering</name>
+        <label>Assigning BU for mailjet Metering</label>
+        <locationX>4670</locationX>
+        <locationY>866</locationY>
+        <assignmentItems>
+            <assignToReference>SASingleRecordVar.FSM_BusinessAreaMailjet__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Metering</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Proforma_Selection_Of_Smart_Meter</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -341,6 +358,192 @@
             <operator>Assign</operator>
             <value>
                 <stringValue>HD - 7 Day Land Entry Notice</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Instructions_to_Generate_Service_Report</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Copy_1_of_Leak_on_Private_Supply_Pipe_variable_assignment</name>
+        <label>Copy 1 of Leak on Private Supply Pipe variable assignment</label>
+        <locationX>4802</locationX>
+        <locationY>1298</locationY>
+        <assignmentItems>
+            <assignToReference>SASingleRecordVar.Date__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Copy_1_of_DateLOPSP</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SASingleRecordVar.FSM_LeakShowing__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Copy_1_of_Leak_ShowingLOPSP</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SASingleRecordVar.FSM_SingleOrJoint__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Copy_1_of_Single_JointLOPSP</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SASingleRecordVar.FSM_PropertyNumbersIfJoint__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Copy_1_of_Property_Numbers_If_joint_give_property_numbersLOPSP</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SASingleRecordVar.FSM_ProformaCustomerAddress__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Copy_1_of_Job_AddressLOPSL</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SASingleRecordVar.FSM_LeakResponsibilityDeclaration__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Copy_1_of_I_declare_that_I_am_responsible_for_the_leak_as_the_owner_of_this_prop</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SASingleRecordVar.FSM_ProformaOwnerAddressIfDifferent__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Copy_1_of_Address_of_Owner_if_different_from_job_addressLOPSP</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SASingleRecordVar.FSM_CustomerTelephone__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Copy_1_of_Customer_TelephoneLOPSP2</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SASingleRecordVar.FSM_Telephone__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Copy_1_of_TelephoneLOPSP2</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SASingleRecordVar.FSM_Telephone2__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Copy_1_of_Tel_NumberLOPSP2</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>TemplateTypeAssignment</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Leak on Private Supply Pipe</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>CustTelephone</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Copy_1_of_Customer_TelephoneLOPSP2</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>TelephoneAssign</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Copy_1_of_TelephoneLOPSP2</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Telephone2</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Copy_1_of_Tel_NumberLOPSP2</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Instructions_to_Generate_Service_Report</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Copy_1_of_Permission_To_Dig_variable_assignment</name>
+        <label>Copy 1 of Permission To Dig variable assignment</label>
+        <locationX>4538</locationX>
+        <locationY>1298</locationY>
+        <assignmentItems>
+            <assignToReference>SASingleRecordVar.Date__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Copy_2_of_DatePTD</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SASingleRecordVar.FSM_ProformaCustomerAddress__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Copy_2_of_AddressPTD</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SASingleRecordVar.FSM_CustomerName__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Copy_2_of_Customer_NamePTD</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SASingleRecordVar.FSM_Location__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Copy_2_of_Location_of_WorksPTD</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SASingleRecordVar.FSM_ProformaDescriptionOfWork__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Copy_2_of_Details_of_WorkPTD</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SASingleRecordVar.FSM_SurfaceType__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Copy_2_of_Surface_TypePTD</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SASingleRecordVar.FSM_OtherSurfaceType__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Copy_2_of_Other_Surface_Type_applicable_only_if_the_Other_is_selectedPTD</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SASingleRecordVar.FSM_CustomerTelephone__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Copy_2_of_Contact_NumberPTD</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>TemplateTypeAssignment</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Permission to Dig</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>CustTelephone</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Copy_2_of_Contact_NumberPTD</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -1152,6 +1355,78 @@
         </connector>
     </assignments>
     <assignments>
+        <name>Smart_Meter_variable_assignment</name>
+        <label>Smart Meter variable assignment</label>
+        <locationX>4274</locationX>
+        <locationY>1298</locationY>
+        <assignmentItems>
+            <assignToReference>SASingleRecordVar.Date__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Date_IPWM</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SASingleRecordVar.FSM_ProformaCustomerAddress__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Attention_owner_and_occupier_of</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SASingleRecordVar.FSM_CustomerName__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Customer_Name_SmartMeterProfo</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SASingleRecordVar.FSM_Location__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Location_of_Works_SmartMeterProfo</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SASingleRecordVar.FSM_ProformaDescriptionOfWork__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Description_of_Works_InternalPipeWorkModif</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SASingleRecordVar.FSM_CustomerTelephone__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Customer_Telephone</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>TemplateTypeAssignment</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Internal Pipework Modification</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>CustTelephone</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Daytime_Tel</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SASingleRecordVar.FSM_ProformaOwnerAddressIfDifferent__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Address_of_Owner_if_different_from_above</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Instructions_to_Generate_Service_Report</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>X7_day_land_entry_notice_variable_assignment</name>
         <label>7 day land entry notice variable assignment</label>
         <locationX>3746</locationX>
@@ -1238,7 +1513,7 @@
     <decisions>
         <name>Check_if_BU_is_Water</name>
         <label>Check if BU is Water</label>
-        <locationX>2789</locationX>
+        <locationX>3273</locationX>
         <locationY>758</locationY>
         <defaultConnector>
             <targetReference>Error_Message</targetReference>
@@ -1273,6 +1548,28 @@
                 <targetReference>Assigning_BU_for_mailjet_waste</targetReference>
             </connector>
             <label>Is BU Waste ?</label>
+        </rules>
+        <rules>
+            <name>Is_BU_Metering</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>BusinessUnit</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Metering</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>BusinessUnit</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Metering</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assigning_BU_for_mailjet_Metering</targetReference>
+            </connector>
+            <label>Is BU Metering ?</label>
         </rules>
     </decisions>
     <decisions>
@@ -1373,7 +1670,7 @@
     <decisions>
         <name>Generate_and_send_selected</name>
         <label>Generate and send selected</label>
-        <locationX>2789</locationX>
+        <locationX>3273</locationX>
         <locationY>350</locationY>
         <defaultConnector>
             <targetReference>FSM_Contact_Information</targetReference>
@@ -1393,6 +1690,61 @@
                 <targetReference>Check_if_BU_is_Water</targetReference>
             </connector>
             <label>Generate only?</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Metering_BU_template_for_Smart_Meter_is_Selected</name>
+        <label>Metering BU template for Smart Meter is Selected</label>
+        <locationX>4670</locationX>
+        <locationY>1082</locationY>
+        <defaultConnector>
+            <targetReference>Instructions_to_Generate_Service_Report</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default</defaultConnectorLabel>
+        <rules>
+            <name>Internal_Pipework_Modification</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>SmartMeterBUPicklist</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Internal Pipework Modification</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Smart_Meter_Proforma</targetReference>
+            </connector>
+            <label>Internal Pipework Modification</label>
+        </rules>
+        <rules>
+            <name>Permission_to_Dig_SmartMeter</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>SmartMeterBUPicklist</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Permission to Dig</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_1_of_Permission_to_Dig</targetReference>
+            </connector>
+            <label>Permission to Dig Smart Meter</label>
+        </rules>
+        <rules>
+            <name>Leak_on_Private_Supply_Pipe_Smart_Meter</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>SmartMeterBUPicklist</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Leak on Private Supply Pipe</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_1_of_Leak_on_Private_Supply_Pipe</targetReference>
+            </connector>
+            <label>Leak on Private Supply Pipe Smart Meter</label>
         </rules>
     </decisions>
     <decisions>
@@ -1563,7 +1915,8 @@ Updated as part of SFS-8191
 Updated as part of SFS-8264 and SFS-8263
 Updated as part of SFI-3016
 Updated as part of SFL-315
-Updated as part of SFL-338</description>
+Updated as part of SFL-338
+update as part of  https://stwater-cms.atlassian.net/browse/WWTC-3183</description>
     <dynamicChoiceSets>
         <name>FSM_LeakResponsibilityDeclarationPicklistVal</name>
         <dataType>Picklist</dataType>
@@ -1595,6 +1948,29 @@ Updated as part of SFL-338</description>
         <object xsi:nil="true"/>
         <picklistField>FSM_SingleOrJoint__c</picklistField>
         <picklistObject>ServiceAppointment</picklistObject>
+    </dynamicChoiceSets>
+    <dynamicChoiceSets>
+        <name>SmartMeterChoiceSet</name>
+        <dataType>String</dataType>
+        <displayField>FSM_DisplayText__c</displayField>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>FSM_Metering__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>FSM_CustomerCommsType__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Proforma</stringValue>
+            </value>
+        </filters>
+        <object>FSM_LeafletConfiguration__mdt</object>
+        <sortField>FSM_DisplayText__c</sortField>
+        <sortOrder>Asc</sortOrder>
     </dynamicChoiceSets>
     <dynamicChoiceSets>
         <name>SurfaceTypePicklistval</name>
@@ -2220,6 +2596,373 @@ Updated as part of SFL-338</description>
         <showHeader>true</showHeader>
     </screens>
     <screens>
+        <name>Copy_1_of_Leak_on_Private_Supply_Pipe</name>
+        <label>Copy 1 of Leak on Private Supply Pipe</label>
+        <locationX>4802</locationX>
+        <locationY>1190</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Copy_1_of_Leak_on_Private_Supply_Pipe_variable_assignment</targetReference>
+        </connector>
+        <fields>
+            <name>Copy_1_of_DateLOPSP</name>
+            <dataType>Date</dataType>
+            <defaultValue>
+                <elementReference>$Flow.CurrentDate</elementReference>
+            </defaultValue>
+            <fieldText>Date</fieldText>
+            <fieldType>InputField</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>Copy_1_of_Job_Number_SAP_Order_NumberLOPSP1</name>
+            <fieldText>&lt;p&gt;Job Number (SAP Order Number):&amp;nbsp;{!woOrderNumber}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>Copy_1_of_Leak_ShowingLOPSP</name>
+            <choiceReferences>LeakShowingPickval</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Leak Showing</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>Copy_1_of_Single_JointLOPSP</name>
+            <choiceReferences>SingleJointPickVal</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Single/Joint</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>Copy_1_of_Property_Numbers_If_joint_give_property_numbersLOPSP</name>
+            <dataType>String</dataType>
+            <fieldText>Property Numbers (If joint give property numbers)</fieldText>
+            <fieldType>InputField</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>Copy_1_of_Job_AddressLOPSL</name>
+            <dataType>String</dataType>
+            <defaultValue>
+                <elementReference>saAddress</elementReference>
+            </defaultValue>
+            <fieldText>Job Address</fieldText>
+            <fieldType>InputField</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>Copy_1_of_Customer_TelephoneLOPSP2</name>
+            <dataType>String</dataType>
+            <defaultValue>
+                <elementReference>woContactNumber</elementReference>
+            </defaultValue>
+            <fieldText>Customer Telephone</fieldText>
+            <fieldType>InputField</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>Copy_1_of_TelephoneLOPSP2</name>
+            <dataType>String</dataType>
+            <fieldText>Telephone</fieldText>
+            <fieldType>InputField</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>Copy_1_of_I_declare_that_I_am_responsible_for_the_leak_as_the_owner_of_this_prop</name>
+            <choiceReferences>FSM_LeakResponsibilityDeclarationPicklistVal</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>I declare that I am responsible for the leak as the owner of this property. I also give permission and agree to Severn Trent and their contractors to carry out the repair on my behalf, and</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>Copy_1_of_Address_of_Owner_if_different_from_job_addressLOPSP</name>
+            <dataType>String</dataType>
+            <fieldText>Address of Owner if different from job address</fieldText>
+            <fieldType>InputField</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>Copy_1_of_Tel_NumberLOPSP2</name>
+            <dataType>String</dataType>
+            <fieldText>Tel Number</fieldText>
+            <fieldType>InputField</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Copy_1_of_Permission_to_Dig</name>
+        <label>Copy 1 of Permission to Dig</label>
+        <locationX>4538</locationX>
+        <locationY>1190</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Copy_1_of_Permission_To_Dig_variable_assignment</targetReference>
+        </connector>
+        <fields>
+            <name>Copy_2_of_DatePTD</name>
+            <dataType>Date</dataType>
+            <defaultValue>
+                <elementReference>$Flow.CurrentDate</elementReference>
+            </defaultValue>
+            <fieldText>Date</fieldText>
+            <fieldType>InputField</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>Copy_1_of_Job_ref_number_SAP_Order_NumberPTD1</name>
+            <fieldText>&lt;p&gt;Job ref. number (SAP Order Number) : {!woOrderNumber}&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>Copy_2_of_AddressPTD</name>
+            <dataType>String</dataType>
+            <defaultValue>
+                <elementReference>saAddress</elementReference>
+            </defaultValue>
+            <fieldText>Address</fieldText>
+            <fieldType>InputField</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>Copy_2_of_Customer_NamePTD</name>
+            <dataType>String</dataType>
+            <defaultValue>
+                <elementReference>WoContactName</elementReference>
+            </defaultValue>
+            <fieldText>Customer Name</fieldText>
+            <fieldType>InputField</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>Copy_2_of_Contact_NumberPTD</name>
+            <dataType>String</dataType>
+            <defaultValue>
+                <elementReference>woContactNumber</elementReference>
+            </defaultValue>
+            <fieldText>Contact Number</fieldText>
+            <fieldType>InputField</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>Copy_2_of_Location_of_WorksPTD</name>
+            <dataType>String</dataType>
+            <fieldText>Location of Works</fieldText>
+            <fieldType>InputField</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>Copy_2_of_Details_of_WorkPTD</name>
+            <dataType>String</dataType>
+            <fieldText>Details of Work</fieldText>
+            <fieldType>InputField</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>Copy_2_of_Surface_TypePTD</name>
+            <choiceReferences>SurfaceTypePicklistval</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Surface Type</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>Copy_2_of_Other_Surface_Type_applicable_only_if_the_Other_is_selectedPTD</name>
+            <dataType>String</dataType>
+            <fieldText>&quot;Other Surface Type (applicable only if the &quot;&quot;Other&quot;&quot; is selected)&quot;</fieldText>
+            <fieldType>InputField</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
         <name>Emergency_Land_Entry_NoticeScreen</name>
         <label>Emergency Land Entry Notice</label>
         <locationX>3482</locationX>
@@ -2303,7 +3046,7 @@ Updated as part of SFL-338</description>
     <screens>
         <name>Error_Message</name>
         <label>Error Message</label>
-        <locationX>4274</locationX>
+        <locationX>5242</locationX>
         <locationY>866</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
@@ -2327,7 +3070,7 @@ Updated as part of SFL-338</description>
     <screens>
         <name>FSM_Contact_Information</name>
         <label>Contact Information</label>
-        <locationX>2877</locationX>
+        <locationX>3361</locationX>
         <locationY>458</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
@@ -2636,7 +3379,7 @@ Updated as part of SFL-338</description>
     <screens>
         <name>Generate_only_Generate_and_Send</name>
         <label>Generate only/Generate and Send</label>
-        <locationX>2789</locationX>
+        <locationX>3273</locationX>
         <locationY>242</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
@@ -3325,7 +4068,7 @@ Updated as part of SFL-338</description>
     <screens>
         <name>Instructions_to_Generate_Service_Report</name>
         <label>Instructions to Generate Service Report</label>
-        <locationX>2789</locationX>
+        <locationX>3273</locationX>
         <locationY>1874</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
@@ -3997,6 +4740,37 @@ Updated as part of SFL-338</description>
         <showHeader>true</showHeader>
     </screens>
     <screens>
+        <name>Proforma_Selection_Of_Smart_Meter</name>
+        <label>Proforma Template Selection</label>
+        <locationX>4670</locationX>
+        <locationY>974</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Metering_BU_template_for_Smart_Meter_is_Selected</targetReference>
+        </connector>
+        <fields>
+            <name>SmartMeterBUPicklist</name>
+            <choiceReferences>SmartMeterChoiceSet</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Template Selection</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
         <name>Proforma_SelectionST</name>
         <label>Proforma Selection</label>
         <locationX>2030</locationX>
@@ -4044,6 +4818,188 @@ Updated as part of SFL-338</description>
             <dataType>String</dataType>
             <fieldText>Proforma Selection</fieldText>
             <fieldType>DropdownBox</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Smart_Meter_Proforma</name>
+        <label>Internal Pipework Modification SmartMeter</label>
+        <locationX>4274</locationX>
+        <locationY>1190</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Smart_Meter_variable_assignment</targetReference>
+        </connector>
+        <fields>
+            <name>Date_IPWM</name>
+            <dataType>Date</dataType>
+            <defaultValue>
+                <elementReference>$Flow.CurrentDate</elementReference>
+            </defaultValue>
+            <fieldText>Date</fieldText>
+            <fieldType>InputField</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>Attention_owner_and_occupier_of</name>
+            <dataType>String</dataType>
+            <fieldText>For the attention of the owner and occupier of:</fieldText>
+            <fieldType>InputField</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>Address_of_Owner_if_different_from_above</name>
+            <dataType>String</dataType>
+            <fieldText>Address of Owner if different from above)</fieldText>
+            <fieldType>InputField</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>Job_Num_SAP_Order_Num</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;Job ref. number (SAP Order Number) : {!woOrderNumber}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>Description_of_Works_InternalPipeWorkModif</name>
+            <fieldText>Description of &quot;Works&quot;</fieldText>
+            <fieldType>LargeTextArea</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>Address</name>
+            <dataType>String</dataType>
+            <defaultValue>
+                <elementReference>saAddress</elementReference>
+            </defaultValue>
+            <fieldText>Address</fieldText>
+            <fieldType>InputField</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>Customer_Name_SmartMeterProfo</name>
+            <dataType>String</dataType>
+            <defaultValue>
+                <elementReference>WoContactName</elementReference>
+            </defaultValue>
+            <fieldText>Customer Name</fieldText>
+            <fieldType>InputField</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>Customer_Telephone</name>
+            <dataType>String</dataType>
+            <defaultValue>
+                <elementReference>woContactNumber</elementReference>
+            </defaultValue>
+            <fieldText>Customer Telephone</fieldText>
+            <fieldType>InputField</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>Daytime_Tel</name>
+            <dataType>String</dataType>
+            <fieldText>Daytime Tel:</fieldText>
+            <fieldType>InputField</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>Location_of_Works_SmartMeterProfo</name>
+            <dataType>String</dataType>
+            <fieldText>Location of Works</fieldText>
+            <fieldType>InputField</fieldType>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <styleProperties>
@@ -4188,7 +5144,7 @@ Updated as part of SFL-338</description>
         <showHeader>true</showHeader>
     </screens>
     <start>
-        <locationX>2663</locationX>
+        <locationX>3147</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Set_All_Variable_to_blank</targetReference>
@@ -4199,7 +5155,7 @@ Updated as part of SFL-338</description>
         <description>SFS-8264 and SFS-8263</description>
         <name>Set_All_Variable_to_blank</name>
         <label>Set All Variable to blank</label>
-        <locationX>2789</locationX>
+        <locationX>3273</locationX>
         <locationY>134</locationY>
         <connector>
             <targetReference>Generate_only_Generate_and_Send</targetReference>
