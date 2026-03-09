@@ -177,7 +177,8 @@ public with sharing Class FSM_MailJetAPICall {
                         }
                     }else{ //For Proforma
                         templateID = Integer.valueOf(System.Label.FSM_MailjetProformaTemplateID); //Performa have static Template ID
-                        //added this for Internal Pipework Modification  Saurabh Gupta -16/02/26
+                        //added this for Internal Pipework Modification  Saurabh Gupta -16/02/26  //WWTC-3183
+                        //start updated as part WWTC-3183
                         if(servApp.FSM_ListOfTemplates__c == 'Internal Pipework Modification'){
                                if(inputs.language == 'English' || inputs.language == null || inputs.language == ''){
                             		templateID = Integer.valueOf(templateNameTemplateIDMap.get(servApp.FSM_ListOfTemplates__c));//Leaflet template ID English
