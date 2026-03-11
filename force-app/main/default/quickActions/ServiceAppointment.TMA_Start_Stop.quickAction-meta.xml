@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Updating the Label of button to TMA Start as part of SRQ0002006255.</description>
     <flowDefinition>FSM_MobileSubflowTMAPermitConditions</flowDefinition>
-    <label>TMA Start / Stop</label>
+    <label>TMA Start</label>
     <optionsCreateFeedItem>false</optionsCreateFeedItem>
     <type>Flow</type>
 </QuickAction>
